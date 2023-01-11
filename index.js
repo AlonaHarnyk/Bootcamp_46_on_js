@@ -1,217 +1,189 @@
-"use strict";
+// const book = {
+//     title: "The Last Kingdom",
+//     author: "Bernard Cornwell",
+//     genres: ["historical prose", "adventure"],
+//     isPublic: false,
+//     rating: 0,
+//     data: {
+//         a: 1,
+//         b: {
+//           test: 'test!!!'
+//         },
+//         c: 3
+//     }
+//   };
 
-// function isIncluded(array, number) {
-//     const result = array.includes(number)
-//     console.log(result)
-// }
 
-// isIncluded([1, 2, 5, 8, 3], 4) // false
-// isIncluded([1, 2, 5, 8, 3], 5) // true
-// isIncluded(5, [1, 3, 5]) // error
-
-// function isIncluded(array, number) {
-//     const result = array.includes(number)
-//     // console.log(result)
-//     return result
-//     // console.log(result)
-// }
-
-// const a = isIncluded([1, 2, 5, 8, 3], 4)
+// const a = book.title
 // console.log(a)
+// console.log(book.genres)
+// console.log(book.data.a)
+// console.log(book.data.b.test)
 
-// console.log(isIncluded([1, 2, 5, 8, 3], 4)) // false
-// console.log(isIncluded([1, 2, 5, 8, 3], 5)) // true
+// console.log(book['genres']);
+// console.log(book[genres]); // error
 
-// const a = isIncluded([1, 2, 5, 8, 3], 4)
-// console.log(a) // false
-// const b = isIncluded([1, 2, 5, 8, 3], 5)
-// console.log(b) // true
+// const x = 'author';
 
-// function add(a, b) {
-//   // const sum = a + b
-//   // return sum
+// // console.log(book['author']) //  "Bernard Cornwell"
+// // console.log(book[x]) // "Bernard Cornwell"
 
-//   return a + b;
-// }
+// console.log(book.x) // undefined
 
-// const number1 = add(1, 3); // 4
-// console.log(number1)
-// const number2 = add(5, 7); // 12
-// console.log(number2)
+// console.log(book['data']['a']) // 1
 
-// const sum = number1 + number2 // 16
-// console.log(sum)
+// console.log(book)
 
-// const sum = add(1, 3) + add(5, 7)
-// console.log(sum) // 16
+// book.isPublic = true;
 
-// function add(a, b) {
-//     if (typeof a !== 'number' || typeof b !== 'number') {
-//         // console.log('One of operands is not a number')
-//         // return
-//         return 'One of operands is not a number'
+// console.log(book)
+
+// book.genres.push('tale')
+// console.log(book)
+
+// book.price = '10$'
+// book['price'] = '10$'
+
+// book.data['d'] = 'd'
+
+// book.title = [book.title]
+
+// console.log(book)
+
+
+// const name = "Генрі Сибола";
+// const age = 45;
+
+
+// const user = {
+//   name: name,
+//   age: age,
+// };
+
+// // console.log(user)
+
+// const user = {
+//   name,
+//   age,
+// };
+
+// console.log(user)
+
+// console.log(user.name); // "Генрі Сибола"
+// console.log(user.age); // 25
+
+
+// const student = {
+//     name: 'Jhon',
+//     email: 'jhon@gmail.com',
+//     homeworkResults: [],
+//     getName() {
+//        return this.name
+//     },
+//     getEmail() {
+//         console.log(this.email)
+//     },
+//     getHWResults() {
+//         console.log(this.homeworkResults)
+//     },
+//     addHomeworkResults(topic, sucess) {
+//       // const item = {topic:topic, sucess:sucess}
+//         const item = {topic, sucess}
+//         this.homeworkResults.push(item)
 //     }
-//     return a + b
 // }
 
-// console.log(add(3, 7))
-// console.log(add( 5, '10'))
+// console.log(student.getName())
+// student.getEmail()
+// student.getHWResults()
+// student.addHomeworkResults('HTML/CSS', true)
+// student.getHWResults()
+// student.addHomeworkResults('JS', true)
+// student.getHWResults()
 
-// function add(a = 0, b = 0) {
-//   // const sum = a + b
-//   // return sum
-//  console.log(a)
-//  console.log(b)
-//  return a + b;
+
+const book = {
+    title: "The Last Kingdom",
+    author: "Bernard Cornwell",
+    genres: ["historical prose", "adventure"],
+    rating: 8.38,
+  };
+
+  // for (const key in book) {
+  //   // Ключ
+  //   console.log('key', key);
+  //   // Значення властивості з таким ключем
+  //   // console.log(book.key)
+  //   console.log('value', book[key]);
+  // }
+ 
+
+const animal = {
+  legs: 4,
+  eyes: 2
+};
+
+// console.log(animal)
+
+const dog = Object.create(animal);
+
+// console.log(dog)
+
+dog.name = "Манго"
+
+
+// console.log(dog); // {name: 'Манго'}
+// console.log(dog.name); // 'Манго'
+// console.log(dog.legs); // 4
+
+// for (const a in dog) {
+//   console.log(a)
 // }
 
-// console.log(add(1))
-
-// function add(a = 0, b = 0, c = 0) {
-//     console.log(a + b + c)
+// for (const key in dog) {
+  
+//   console.log(dog.hasOwnProperty(key))
+// // if (dog.hasOwnProperty(key)) {
+// //     console.log(key)
+// // }
 // }
 
-// const num1 = 3;
-// const num2 = 4
 
-// add(num1, num2)
-// add(3)
-// add()
+// dog.eyeColor = 'grey';
 
-// function add() {
-//     console.log(arguments)
-//     console.log(arguments[1])
-//     console.log(arguments.length)
-//     let sum = 0;
-//     for(const arg of arguments) {
-//         // console.log(arg)
-//         sum +=arg
-//     }
-//     // console.log(sum)
-//     return sum
-// }
+// // const keys = Object.keys(dog)
+// // console.log(keys)
 
-// add(5, 7, 4, 9, 10)
-// add(5, 7, 4, 9, 10, 100, 45, 36)
+// // for (const item of keys) {
+// //   console.log(item)
 
-// function isIncluded() {
-//     console.log(arguments)
-//     const array = Array.from(arguments);
-//     console.log(array)
-//     const number = arguments[arguments.length - 1]
-//     console.log(number)
-//     const array2 = array.slice(0, -1)
-//     console.log(array2)
-//     console.log(array2.includes(number))
-//     return array2.includes(number)
-// }
+// // }
 
-// function isIncluded(...array) {
-//     console.log(array)
-//     const number = array[array.length - 1]
-//     console.log(number)
-//     const array2 = array.slice(0, -1)
-//     console.log(array2)
-//     console.log(array2.includes(number))
-//     return array2.includes(number)
-// }
+// // const values = Object.values(dog)
+// // console.log(values)
 
-// isIncluded(2, 5, 6, 8, 4, 9, 3, 7)
+// const entries = Object.entries(dog)
+// console.log(entries)
 
-// console.log(add(3, 7))
-// console.log(add( 5, '10'))
+const books = [
+  {
+    title: "The Last Kingdom",
+    author: "Bernard Cornwell",
+    rating: 8.38,
+  },
+  {
+    title: "На березі спокійних вод",
+    author: "Роберт Шеклі",
+    rating: 8.51,
+  },
+  {
+    title: "Сон смішної людини",
+    author: "Федір Достоєвський",
+    rating: 7.75,
+  },
+];
 
-// const add = function(a, b) {
-//     if(typeof a !== 'number' || typeof b !== 'number') {
-//         return 'One of operands is not a number'
-//         // return
-//     }
-//     return a + b
-// }
 
-// console.log(add(3, 7))
-// console.log(add( 5, '10'))
+const obj = books[1]
 
-// const a = 1;
-// console.log(a);
-// function logger() {
-//   const a = 2;
-// //   console.log(a)
-//   if (a === 2) {
-//     const a = 3;
-//     console.log(a)
-//     for (let i = 0; i <= 10; i += 1) {
-//         // const a = 4;
-//     //   console.log(a);
-//     }
-//   } else {
-//     console.log(a)
-//   }
-// }
-
-// logger();
-
-// console.log(111)
-
-// function x(a, b) {
-//     if (a > b) {
-//         return a - b
-//     }
-//     return a + b
-// }
-// console.log(x(10, 20))
-// console.log(x(20, 10))
-
-// function bar() {
-//     console.log("bar");
-//     console.log(222)
-//   }
-
-//   function baz() {
-//     console.log("baz");
-//     console.log(444)
-//   }
-
-//   function foo() {
-//     console.log("foo");
-//     bar();
-//     console.log(333)
-//     baz();
-//     console.log(555)
-//     //   foo()
-//   }
-
-//   foo();
-
-//   console.log('!!!')
-
-// function transform(...args) {
-//   console.log(args);
-//   const array = [];
-//   for (const arg of args) {
-//     if (typeof arg === "number") {
-//       array.push(String(arg));
-//     } else {
-//       array.push(Number(arg));
-//     }
-//   }
-//   return array;
-// }
-
-// console.log(transform(4, "5", 3, "9", 7)); // ['4', 5, '3', 9, '7']
-
-function flatArray(array) {
-  const newArray = [];
-  for (const elem of array) {
-    if (Array.isArray(elem)) {
-      for (const item of elem) {
-        newArray.push(item);
-      }
-    } else {
-      newArray.push(elem);
-    }
-  }
-  return newArray;
-}
-
-console.log(flatArray(["a", 5, ["3", 7, 8], "45", [1, 3, 7, 8]]));
+console.log(Object.values(obj))
