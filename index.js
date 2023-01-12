@@ -1,189 +1,236 @@
-// const book = {
-//     title: "The Last Kingdom",
-//     author: "Bernard Cornwell",
-//     genres: ["historical prose", "adventure"],
-//     isPublic: false,
-//     rating: 0,
-//     data: {
-//         a: 1,
-//         b: {
-//           test: 'test!!!'
-//         },
-//         c: 3
-//     }
-//   };
+// const a = ['a', 'b', 'c'];
+// const b = [1, 2, 3];
+// const c = [[1, 2], 'qwe', 1234]
+// const d = [...a, ...b, ...c];
+// // const e = [a, b, c]
+
+// console.log(d)
+
+// const obj1 = {a: 1, b: 2};
+// const obj2 = {c: 3, d: 4}
+// const obj3 = {...obj1, ...obj2}
+// console.log(obj3)
+
+// const obj1 = {a: 1, b: 2};
+// const obj2 = {a: 0, c: 3, d: 4}
+// // const obj3 = {...obj2, ...obj1}
+// const obj3 = {...obj2, ...obj1, a: 5, e: 9}
+// console.log(obj3)
 
 
-// const a = book.title
-// console.log(a)
-// console.log(book.genres)
-// console.log(book.data.a)
-// console.log(book.data.b.test)
-
-// console.log(book['genres']);
-// console.log(book[genres]); // error
-
-// const x = 'author';
-
-// // console.log(book['author']) //  "Bernard Cornwell"
-// // console.log(book[x]) // "Bernard Cornwell"
-
-// console.log(book.x) // undefined
-
-// console.log(book['data']['a']) // 1
-
-// console.log(book)
-
-// book.isPublic = true;
-
-// console.log(book)
-
-// book.genres.push('tale')
-// console.log(book)
-
-// book.price = '10$'
-// book['price'] = '10$'
-
-// book.data['d'] = 'd'
-
-// book.title = [book.title]
-
-// console.log(book)
-
-
-// const name = "Генрі Сибола";
-// const age = 45;
-
-
-// const user = {
-//   name: name,
-//   age: age,
-// };
-
-// // console.log(user)
-
-// const user = {
-//   name,
-//   age,
-// };
-
-// console.log(user)
-
-// console.log(user.name); // "Генрі Сибола"
-// console.log(user.age); // 25
-
-
-// const student = {
-//     name: 'Jhon',
-//     email: 'jhon@gmail.com',
-//     homeworkResults: [],
-//     getName() {
-//        return this.name
-//     },
-//     getEmail() {
-//         console.log(this.email)
-//     },
-//     getHWResults() {
-//         console.log(this.homeworkResults)
-//     },
-//     addHomeworkResults(topic, sucess) {
-//       // const item = {topic:topic, sucess:sucess}
-//         const item = {topic, sucess}
-//         this.homeworkResults.push(item)
-//     }
+// function q(...otherArgs) {
+//   console.log(otherArgs); // Масив інших аргументів
 // }
 
-// console.log(student.getName())
-// student.getEmail()
-// student.getHWResults()
-// student.addHomeworkResults('HTML/CSS', true)
-// student.getHWResults()
-// student.addHomeworkResults('JS', true)
-// student.getHWResults()
+// q(1, 2);
+// q(1, 2, 3);
+// q(1, 2, 3, 4, 5, 6, 7);
+
+// function w(a, b, c, ...otherArgs) {
+
+//   console.log(a); 
+//   console.log(b); 
+//   console.log(c); 
+//   console.log(otherArgs); // Масив інших аргументів
+
+//   const array = [...otherArgs]
+//   console.log(array)
+// }
+// // w(1, 2, 3);
+// w(1, 2, 3, 4, 5, 6, 7);
+
+
+// function isIncluded(num, ...array) {
+//   console.log(array.includes(num))
+//   console.log(array)
+// }
+// isIncluded(1, 2, 3, 5, 6, 8, 5)
+
+
+// function isIncluded(...array) {
+//   const newArray = array.slice(1)
+//   console.log(newArray)
+//   console.log(newArray.includes(array[0]))
+// }
+// isIncluded(1, 2, 3, 5, 6, 8, 5)
+
+
+// function isIncluded(...array) {
+//   const num = array.pop()
+//   console.log(array)
+//   console.log(num)
+//   console.log(array.includes(num))
+// }
+// isIncluded(5, 2, 3, 5, 6, 8, 10)
 
 
 const book = {
-    title: "The Last Kingdom",
-    author: "Bernard Cornwell",
-    genres: ["historical prose", "adventure"],
-    rating: 8.38,
-  };
-
-  // for (const key in book) {
-  //   // Ключ
-  //   console.log('key', key);
-  //   // Значення властивості з таким ключем
-  //   // console.log(book.key)
-  //   console.log('value', book[key]);
-  // }
- 
-
-const animal = {
-  legs: 4,
-  eyes: 2
+  title: "The Last Kingdom",
+  author: "Bernard Cornwell",
+  genres: ["historical prose", "adventure"],
+  isPublic: true,
+  rating: 8.38,
+  price: '3$',
+  coverImage: 'bkjbkbh'
 };
 
-// console.log(animal)
+// const { price, title, ...data } = book;
 
-const dog = Object.create(animal);
+// console.log(book)
+// console.log(price)
+// console.log(data)
 
-// console.log(dog)
+// const { author, genres } = book;
 
-dog.name = "Манго"
+// console.log(book.author)
+// console.log(book['author'])
+// console.log(author)
+// console.log(genres)
+// console.log(book.price)
 
+// Деструктуризуємо
 
-// console.log(dog); // {name: 'Манго'}
-// console.log(dog.name); // 'Манго'
-// console.log(dog.legs); // 4
+// const { title, author, isPublic, rating, coverImage = 'qwerty' } = book;
 
-// for (const a in dog) {
-//   console.log(a)
+// console.log(coverImage)
+
+const { title, author, isPublic, rating: votes, coverImage, price='5$' } = book;
+console.log(votes)
+
+// const books = [
+//   {
+//     title: "The Last Kingdom",
+//     author: "Bernard Cornwell",
+//     rating: 8.38,
+//   },
+//   {
+//     title: "На березі спокійних вод",
+//     author: "Роберт Шеклі",
+//     rating: 8.51,
+//   },
+// ];
+
+// for (const book of books) {
+// const {title, author, rating} = book
+//   console.log(title);
+//   console.log(author);
+//   console.log(rating);
 // }
 
-// for (const key in dog) {
-  
-//   console.log(dog.hasOwnProperty(key))
-// // if (dog.hasOwnProperty(key)) {
-// //     console.log(key)
-// // }
+// for (const {title, author, rating} of books) {
+//   console.log(title);
+//   console.log(author);
+//   console.log(rating);
 // }
 
+// const user = {
+//   name: "Jacques Gluke",
+//   tag: "jgluke",
+//   stats: {
+//     followers: 5603,
+//     views: 4827,
+//     likes: 1308,
+//     a: {
+//       b: 0,
+//       c: {
+//         d: 'bkjbkjbnlkbklj'
+//       }
+//     }
+//   },
+// };
 
-// dog.eyeColor = 'grey';
+// const {
+//   name,
+//   tag,
+//   stats,
+// } = user;
 
-// // const keys = Object.keys(dog)
-// // console.log(keys)
+// console.log(stats.followers)
+// console.log(stats['likes'])
 
-// // for (const item of keys) {
-// //   console.log(item)
+// const {
+//   name,
+//   tag,
+//   stats: { followers, views, likes, a: {b, c: {d}} },
+// } = user;
 
-// // }
+// console.log(d)
+// console.log(followers)
+// console.log(likes)
 
-// // const values = Object.values(dog)
-// // console.log(values)
+// const rgb = [200, 255, 100];
+// const [red, green, blue] = rgb;
 
-// const entries = Object.entries(dog)
-// console.log(entries)
+// console.log(green)
 
-const books = [
-  {
-    title: "The Last Kingdom",
-    author: "Bernard Cornwell",
-    rating: 8.38,
+// let a
+// let b
+// a = 5
+// b = 10
+// console.log(a)
+// console.log(b)
+
+// let a, b
+// a = 5
+// b = 10
+// console.log(a)
+// console.log(b)
+
+
+
+const car1 = {
+  brand: "BMW",
+  model: "700",
+  a: "red",
+  maxSpeed: 240,
+  isNew: true,
+  dimensions: {
+    weight: 2000,
+    height: 150,
+    length: 4.2,
   },
-  {
-    title: "На березі спокійних вод",
-    author: "Роберт Шеклі",
-    rating: 8.51,
+};
+
+const car2 = {
+  brand: "BMW",
+  model: "700",
+  a: "red",
+  maxSpeed: 240,
+  // isNew: true,
+  dimensions: {
+    height: 150,
+    length: 4.2,
   },
-  {
-    title: "Сон смішної людини",
-    author: "Федір Достоєвський",
-    rating: 7.75,
+};
+
+// function createMessage(car) {
+//   const message = `
+//   Color: ${car.a}
+//   Max speed: ${car.maxSpeed}
+//   Is new: ${car.isNew}
+//   Weight: ${car.dimensions.weight}
+//   `;
+//   console.log(message);
+// }
+
+function createMessage({
+  dimensions: {
+    weight = '-',
+    height = "No info",
+    length = "No info"
   },
-];
+  a: color = 'No info',
+  maxSpeed = "No info",
+  isNew = "No info",
 
+}) {
+  const message = `
+  Color: ${color}
+  Max speed: ${maxSpeed}
+  Is new: ${isNew}
+  Weight: ${weight}
+  `;
+  console.log(message);
+}
 
-const obj = books[1]
-
-console.log(Object.values(obj))
+createMessage(car2);
