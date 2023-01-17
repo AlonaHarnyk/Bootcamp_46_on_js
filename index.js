@@ -1,29 +1,12 @@
-// function a(onSuccess, onUnsuccess) {
-//   console.log(onSuccess)
-//   console.log(onUnsuccess)
-//   const mark = Number(prompt('What is your mark?'))
-//   if (mark >= 10) {
-//    onSuccess()
-//   } else {
-//    onUnsuccess()
-//   }
-// }
+// const planets = ["Земля", "Марс", "Венера", "Юпітер"];
 
-// // function b() {
-// //   alert('It is great!')
-// // }
+// const planetsInUpperCase = planets.map(planet => planet.toUpperCase());
+// console.log(planetsInUpperCase); // ['ЗЕМЛЯ', 'МАРС', 'ВЕНЕРА', 'ЮПІТЕР']
 
-// function c() {
-//   alert('It is excellent mark!')
-// }
+// const callback = planet => planet.toUpperCase()
 
-// function d() {
-//   alert('It is bad mark!')
-// }
-
-// // a(b, d)
-
-// a(c, d)
+// const planetsInUpperCase = planets.map(callback);
+// console.log(planetsInUpperCase); // ['ЗЕМЛЯ', 'МАРС', 'ВЕНЕРА', 'ЮПІТЕР']
 
 const users = [
   {
@@ -112,63 +95,268 @@ const users = [
   },
 ];
 
-// const newUsers = []
+// const ages1 = users.map(user => user.age)
+// console.log(ages1)
 
-// users.forEach(function(user, index) {
-//   const {name, age, ...restProps} = user;
-//   console.log(`${index + 1} - ${name} - ${age}`)
-//   console.log(restProps)
-//   newUsers.push(restProps)
-// })
+// const ages2 = users.map(({ age}) => age)
 
-// console.log(newUsers)
+// console.log(ages2)
 
-// const classicAdd = function (a, b, c) {
-//   return a + b + c;
-// };
+// const students = [
+//   { name: "Манго", courses: ["математика", "фізика"] },
+//   { name: "Полі", courses: ["інформатика", "математика"] },
+//   { name: "Ківі", courses: ["фізика", "біологія"] },
+// ]; 
 
-// const arrowAdd1 = (a, b, c) => {
-//   return a + b + c;
-// };
+// // const a = students.map(({ courses }) => courses)
 
-// const arrowAdd2 = (a, b, c) => a + b + c;
+// // const b = a.flat()
 
-// const mathOperations = (num1, num2, callback1, callback2) => {
-//   if (num1 > num2) {
-//     const result = callback1(num1, num2);
-//     return result;
-//   } else if (num2 > num1) {
-//     return callback2(num1, num2);
-//   } else {
-//     return "Enter another numbers";
+// // console.log(b)
+// // console.log(a)
+
+// const courses = students.flatMap(({courses}) => courses);
+// console.log(courses) // ['математика', 'фізика', 'інформатика', 'математика', 'фізика', 'біологія']
+
+// const students = [
+//   { name: "Манго", courses: ["математика", "фізика", [1, 2, [7, 8, [100, 700, [5, 10]]]]] },
+//   { name: "Полі", courses: ["інформатика", "математика", [3, 4, [9, 10]]] },
+//   { name: "Ківі", courses: ["фізика", "біологія", [5, 6]] },
+// ]; 
+
+// // const courses = students.flatMap(({courses}) => courses);
+// // console.log(courses.flat()) 
+
+// const a = students.map(({ courses }) => courses)
+
+// console.log(a.flat(Infinity))
+
+// const users1 = users.filter(({ balance }) => balance > 3000 )
+// console.log(users1)
+
+// const students = [
+//   { name: "Манго", courses: ["математика", "фізика"] },
+//   { name: "Полі", courses: ["інформатика", "математика"] },
+//   { name: "Ківі", courses: ["фізика", "біологія"] },
+// ];
+
+// const allCourses = students.flatMap(student => student.courses);
+// ['математика', 'фізика', 'інформатика', 'математика', 'фізика', 'біологія'];
+
+// const uniqueCourses = allCourses.filter(
+//   (course, index, array) => {
+//   console.log('#iteration', index + 1)
+//   console.log(index)
+//   console.log(array.indexOf(course))
+//   return array.indexOf(course) === index
 //   }
+// );
+
+// const uniqueCourses = allCourses.filter(
+//   (course, index, array) => array.indexOf(course) === index
+// );
+
+// console.log(uniqueCourses)
+
+
+// const users2 = users.filter(({ name, balance }) => balance > 3000 && name[0] === "S")
+// console.log(users2)
+
+// const userFind = users.find(({ name, balance }) => balance > 3000 && name[0] === "S")
+// console.log(userFind)
+
+// const userFind = users.find(({ balance }) => balance > 3000 )
+// console.log(userFind)
+
+// console.log(users.indexOf(userFind))
+
+// const index = users.findIndex(({  balance }) => balance > 3000 )
+// console.log(index)
+
+
+// const result1 = users.every(({ balance }) => balance > 1000)
+// const result2 = users.every(({age}) => age >= 20 && age <=30)
+
+// console.log(result2)
+
+// const result3 = users.some(({ eyeColor }) => eyeColor === 'green')
+// const result4 = users.some(({friends}) => friends.length > 5)
+// console.log(result4)
+
+
+
+// const total = [2, 7, 3, 14, 6].reduce((previousValue, number) => {
+//   return previousValue + number;
+// }, 0);
+
+// console.log(total); // 32
+
+// const a = 100 + 100
+
+// const array = [2, 7, 3, 14, 6]
+// console.log(array)
+// const total = array.reduce((previousValue, number, index) => {
+//   console.log('Iteration:', index + 1)
+//   console.log('previousValue', previousValue)
+//   console.log('number', number)
+//   const res = previousValue + number;
+//   console.log('res', res)
+//   return res;
+// }, a);
+
+// console.log(total); // 32
+
+
+// const countSum = (array) => {
+//   // I
+//   // const positiveNums = array.filter(elem => elem >= 0)
+//   // return positiveNums.reduce((acc, elem) => acc + elem)
+//   // II
+//   return array.filter(elem => elem >= 0).reduce((acc, elem) => acc + elem)
+// }
+
+// const countSum = (array) => {
+//   return array.reduce((acc, elem) => {
+//     if (elem > 0) {
+//       return acc + elem
+//     } else {
+//       return acc
+//     }
+//   }, 0)
+// }
+
+
+// const countSum = (array) => array.reduce((acc, elem) => elem > 0 ? acc + elem : acc, 0)
+
+
+// console.log(countSum([-34, 1, 5, 4, -5, 7, 3, 0]))
+// console.log(countSum([-34, 1, -4, -5, -40, 3, 0]))
+
+
+
+// const array = [2, 7, 3, 14, 6]
+// const total = array.reduce((previousValue, number) => {
+//   console.log('previousValue', previousValue)
+//   const res = previousValue + number;
+//   console.log('res', res)
+//   return res;
+// }, '');
+
+// console.log(total); // '273146'
+
+
+
+
+// const getSums = (array) => array.reduce((acc, num, idx) => idx === 0 ? [num] : [...acc, num + acc[idx-1]], [])
+
+// const getSums = (array) => array.reduce((acc, num, idx) => {
+//   console.log(idx+1)
+//   console.log('acc', acc)
+//   if (idx === 0) {
+//     return [num]
+//   } else {
+//     console.log('last elem', acc[idx - 1])
+//     return [...acc, num + acc[idx - 1]]
+//   }
+
+// }, [])
+
+// console.log(getSums([1, 2, 3, 4, 5]))// [1, 3, 6, 10, 15]
+
+// const cars = [
+//   { make: 'Honda', model: 'CR-V', type: 'suv', amount: 14, price: 24045, onSale: true },
+//   { make: 'Honda', model: 'Accord', type: 'sedan', amount: 2, price: 22455, onSale: true },
+//   { make: 'Mazda', model: 'Mazda 6', type: 'sedan', amount: 8, price: 24195, onSale: false },
+//   { make: 'Mazda', model: 'CX-9', type: 'suv', amount: 7, price: 31520, onSale: true },
+//   { make: 'Toyota', model: '4Runner', type: 'suv', amount: 19, price: 34210, onSale: false },
+//   { make: 'Toyota', model: 'Sequoia', type: 'suv', amount: 16, price: 45560, onSale: false },
+//   { make: 'Toyota', model: 'Tacoma', type: 'truck', amount: 4, price: 24320, onSale: true },
+//   { make: 'Ford', model: 'F-150', type: 'truck', amount: 11, price: 27110, onSale: true },
+//   { make: 'Ford', model: 'Fusion', type: 'sedan', amount: 13, price: 22120, onSale: true },
+//   { make: 'Ford', model: 'Explorer', type: 'suv', amount: 6, price: 31660, onSale: false }
+// ];
+
+// Example 1 - Метод map
+// Нехай функція getModels повертає масив моделей (поле model) всіх автомобілів.
+
+// const getModels = cars => {
+//   return cars.map(({model}) => model)
 // };
 
-// const add = (num1, num2) => num1 + num2;
-// const substract = (num1, num2) => num2 - num1;
+// console.log(getModels(cars));
 
-// const multiply = (num1, num2) => num1 * num2;
-// const divide = (num1, num2) => num2 / num1;
+// Example 2 - Метод filter
+// Нехай функція filterByPrice повертає масив автомобілів ціна яких менша ніж значення параметра threshold.
 
-// console.log(mathOperations(10, 20, add, substract)); // 10
-// console.log(mathOperations(100, 20, add, substract)); // 120
-// console.log(mathOperations(200, 200, add, substract)); // 'Enter another numbers'
-// console.log(mathOperations(10, 20, multiply, divide)); //2
-// console.log(mathOperations(100, 20, multiply, divide)); //2000
+// const filterByPrice = (cars, threshold) => {
+//   return cars.filter((car) => car.price > threshold)
+// };
 
-// console.log(mathOperations(10, 20, (num1, num2) => num1 + num2, (num1, num2) => num2 - num1)); // 10
+// console.table(filterByPrice(cars, 30000));
+// console.table(filterByPrice(cars, 25000));
 
-const newUsers = []
+// Example 3 - Метод filter
+// Нехай функція getCarsWithDiscount повертає масив автомобілів властивість onSale яких true.
 
-// users.forEach((user, index) => {
-//   const {name, age, ...restProps} = user
-//   console.log(`${index + 1} - ${name} - ${age}`)
-//   newUsers.push(restProps)
-// })
+// const getCarsWithDiscount = cars => {
+//   return cars.filter(car => car.onSale === true)
+// };
 
-users.forEach(({name, age, ...restProps}, index) => {
-  console.log(`${index + 1} - ${name} - ${age}`)
-  newUsers.push(restProps)
-})
+// const getCarsWithDiscount = cars => {
+//   return cars.filter(car => car.onSale)
+// };
 
-// console.log(newUsers)
+// console.table(getCarsWithDiscount(cars));
+
+// Example 4 - Метод find
+// const getCarByModel = (cars, model) => {
+//   return cars.find(car => car.model === model)
+// };
+
+// console.log(getCarByModel(cars, 'F-150'));
+// console.log(getCarByModel(cars, 'CX-9'));
+
+// Example 5 - Метод reduce
+// Нехай функція getTotalAmount повертає загальну кількість автомобілів (значення властивостей amount).
+
+// const getTotalAmount = cars => {
+//   return cars.reduce((total, car) => {
+//     return total + car.amount
+//   }, 0)
+// };
+
+// console.log(getTotalAmount(cars));
+
+
+
+
+
+// const scores = [27, 2, 41, 4, 7, 3, 75];
+// const ascendingScores = [...scores].sort((a, b) => a - b);
+// console.log(ascendingScores); 
+
+const cars = [
+  { make: 'Honda', model: 'CR-V', type: 'suv', amount: 14, price: 24045, onSale: true },
+  { make: 'Honda', model: 'Accord', type: 'sedan', amount: 2, price: 22455, onSale: true },
+  { make: 'Mazda', model: 'Mazda 6', type: 'sedan', amount: 8, price: 24195, onSale: false },
+  { make: 'Mazda', model: 'CX-9', type: 'suv', amount: 7, price: 31520, onSale: true },
+  { make: 'Toyota', model: '4Runner', type: 'suv', amount: 19, price: 34210, onSale: false },
+  { make: 'Toyota', model: 'Sequoia', type: 'suv', amount: 16, price: 45560, onSale: false },
+  { make: 'Toyota', model: 'Tacoma', type: 'truck', amount: 4, price: 24320, onSale: true },
+  { make: 'Ford', model: 'F-150', type: 'truck', amount: 11, price: 27110, onSale: true },
+  { make: 'Ford', model: 'Fusion', type: 'sedan', amount: 13, price: 22120, onSale: true },
+  { make: 'Ford', model: 'Explorer', type: 'suv', amount: 6, price: 31660, onSale: false }
+];
+
+
+// const prices = cars.map(({price}) => price)
+
+// console.log(prices)
+
+// const result = prices.filter(price => price > 30000)
+
+// console.log(result)
+
+const result2 = cars.map(({price}) => price).filter(price => price > 30000).sort((a, b) => a - b)
+
+console.log(result2)
