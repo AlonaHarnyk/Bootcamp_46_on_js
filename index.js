@@ -106,7 +106,7 @@ const users = [
 //   { name: "Манго", courses: ["математика", "фізика"] },
 //   { name: "Полі", courses: ["інформатика", "математика"] },
 //   { name: "Ківі", courses: ["фізика", "біологія"] },
-// ]; 
+// ];
 
 // // const a = students.map(({ courses }) => courses)
 
@@ -122,10 +122,10 @@ const users = [
 //   { name: "Манго", courses: ["математика", "фізика", [1, 2, [7, 8, [100, 700, [5, 10]]]]] },
 //   { name: "Полі", courses: ["інформатика", "математика", [3, 4, [9, 10]]] },
 //   { name: "Ківі", courses: ["фізика", "біологія", [5, 6]] },
-// ]; 
+// ];
 
 // // const courses = students.flatMap(({courses}) => courses);
-// // console.log(courses.flat()) 
+// // console.log(courses.flat())
 
 // const a = students.map(({ courses }) => courses)
 
@@ -158,7 +158,6 @@ const users = [
 
 // console.log(uniqueCourses)
 
-
 // const users2 = users.filter(({ name, balance }) => balance > 3000 && name[0] === "S")
 // console.log(users2)
 
@@ -173,7 +172,6 @@ const users = [
 // const index = users.findIndex(({  balance }) => balance > 3000 )
 // console.log(index)
 
-
 // const result1 = users.every(({ balance }) => balance > 1000)
 // const result2 = users.every(({age}) => age >= 20 && age <=30)
 
@@ -182,8 +180,6 @@ const users = [
 // const result3 = users.some(({ eyeColor }) => eyeColor === 'green')
 // const result4 = users.some(({friends}) => friends.length > 5)
 // console.log(result4)
-
-
 
 // const total = [2, 7, 3, 14, 6].reduce((previousValue, number) => {
 //   return previousValue + number;
@@ -206,62 +202,97 @@ const users = [
 
 // console.log(total); // 32
 
-
-// const countSum = (array) => {
-//   // I
-//   // const positiveNums = array.filter(elem => elem >= 0)
-//   // return positiveNums.reduce((acc, elem) => acc + elem)
-//   // II
-//   return array.filter(elem => elem >= 0).reduce((acc, elem) => acc + elem)
-// }
-
-// const countSum = (array) => {
-//   return array.reduce((acc, elem) => {
-//     if (elem > 0) {
-//       return acc + elem
-//     } else {
-//       return acc
-//     }
-//   }, 0)
-// }
-
-
-// const countSum = (array) => array.reduce((acc, elem) => elem > 0 ? acc + elem : acc, 0)
-
-
-// console.log(countSum([-34, 1, 5, 4, -5, 7, 3, 0]))
-// console.log(countSum([-34, 1, -4, -5, -40, 3, 0]))
-
-
-
-// const array = [2, 7, 3, 14, 6]
-// const total = array.reduce((previousValue, number) => {
-//   console.log('previousValue', previousValue)
-//   const res = previousValue + number;
-//   console.log('res', res)
-//   return res;
-// }, '');
-
-// console.log(total); // '273146'
-
-
-
-
-// const getSums = (array) => array.reduce((acc, num, idx) => idx === 0 ? [num] : [...acc, num + acc[idx-1]], [])
-
-// const getSums = (array) => array.reduce((acc, num, idx) => {
-//   console.log(idx+1)
-//   console.log('acc', acc)
-//   if (idx === 0) {
-//     return [num]
-//   } else {
-//     console.log('last elem', acc[idx - 1])
-//     return [...acc, num + acc[idx - 1]]
+//   const countSum = (array) => {
+//     // I
+//     // const positiveNums = array.filter(elem => elem >= 0)
+//     // return positiveNums.reduce((acc, elem) => acc + elem, 0)
+//     // II
+//     // return array.filter(elem => elem >= 0).reduce((acc, elem) => acc + elem)
 //   }
 
-// }, [])
+//   const countSum = (array) => {
+//     return array.reduce((acc, elem) => {
+//       if (elem >= 0) {
+//         return acc + elem
+//       } else {
+//         return acc
+//       }
+//     }, 0)
+//   }
 
-// console.log(getSums([1, 2, 3, 4, 5]))// [1, 3, 6, 10, 15]
+//   const countSum = (array) => array.reduce((acc, elem) => elem > 0 ? acc + elem : acc, 0)
+
+//   console.log(countSum([-34, 1, 5, 4, -5, 7, 3, 0]))
+//   console.log(countSum([-34, 1, -4, -5, -40, 3, 0]))
+
+//   const array = [2, 7, 3, 14, 6]
+//   const total = array.reduce((previousValue, number) => {
+//     console.log('previousValue', previousValue)
+//     const res = previousValue + number;
+//     console.log('res', res)
+//     return res;
+//   }, '');
+
+//   console.log(total); // '273146'
+
+//   const getSums = (array) => array.reduce((acc, num, idx) => idx === 0 ? [num] : [...acc, num + acc[idx-1]], [])
+
+//   const getSums = (array) => array.reduce((acc, num, idx) => {
+//     console.log('Iteration', idx+1)
+//     console.log('acc', acc)
+//     if (idx === 0) {
+//       return [num]
+//     } else {
+//       console.log('last elem', acc[idx - 1])
+//       return [...acc, num + acc[idx - 1]]
+//     }
+
+//   }, [])
+
+//   console.log(getSums([1, 2, 3, 4, 5]))// [1, 3, 6, 10, 15]
+
+// const tweets = [
+//   { id: "000", likes: 5, tags: ["js", "nodejs"] },
+//   { id: "001", likes: 2, tags: ["html", "css"] },
+//   { id: "002", likes: 17, tags: ["html", "js", "nodejs"] },
+//   { id: "003", likes: 8, tags: ["css", "react"] },
+//   { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
+// ];
+
+// const getTags = (tweets) =>
+//   tweets.reduce((allTags, tweet) => {
+//     allTags.push(...tweet.tags);
+
+//     return allTags;
+//   }, []);
+
+// const tags = getTags(tweets);
+
+// console.log(tags);
+
+// Винесемо callback-функцію окремо, а в reducе передамо посилання на неї.
+// Це стандартна практика, якщо callback-функція досить велика.
+
+// Якщо в об'єкті-акумуляторі acc відсутня своя властивість з ключем tag,
+// то створюємо її і записуємо їй значення 0.
+// В іншому випадку збільшуємо значення на 1.
+// const getTagStats = (acc, tag, idx) => {
+//   console.log("Iteration", idx + 1);
+//   if (!acc.hasOwnProperty(tag)) {
+//     acc[tag] = 0;
+//   }
+
+//   acc[tag] += 1;
+//   console.log(acc);
+//   return acc;
+// };
+
+// // Початкове значення акумулятора - це порожній об'єкт {}
+// const countTags = (tags) => tags.reduce(getTagStats, {});
+
+// const tagCount = countTags(tags);
+// console.log(tagCount);
+
 
 // const cars = [
 //   { make: 'Honda', model: 'CR-V', type: 'suv', amount: 14, price: 24045, onSale: true },
@@ -327,26 +358,9 @@ const users = [
 
 // console.log(getTotalAmount(cars));
 
-
-
-
-
 // const scores = [27, 2, 41, 4, 7, 3, 75];
 // const ascendingScores = [...scores].sort((a, b) => a - b);
-// console.log(ascendingScores); 
-
-const cars = [
-  { make: 'Honda', model: 'CR-V', type: 'suv', amount: 14, price: 24045, onSale: true },
-  { make: 'Honda', model: 'Accord', type: 'sedan', amount: 2, price: 22455, onSale: true },
-  { make: 'Mazda', model: 'Mazda 6', type: 'sedan', amount: 8, price: 24195, onSale: false },
-  { make: 'Mazda', model: 'CX-9', type: 'suv', amount: 7, price: 31520, onSale: true },
-  { make: 'Toyota', model: '4Runner', type: 'suv', amount: 19, price: 34210, onSale: false },
-  { make: 'Toyota', model: 'Sequoia', type: 'suv', amount: 16, price: 45560, onSale: false },
-  { make: 'Toyota', model: 'Tacoma', type: 'truck', amount: 4, price: 24320, onSale: true },
-  { make: 'Ford', model: 'F-150', type: 'truck', amount: 11, price: 27110, onSale: true },
-  { make: 'Ford', model: 'Fusion', type: 'sedan', amount: 13, price: 22120, onSale: true },
-  { make: 'Ford', model: 'Explorer', type: 'suv', amount: 6, price: 31660, onSale: false }
-];
+// console.log(ascendingScores);
 
 
 // const prices = cars.map(({price}) => price)
@@ -357,6 +371,6 @@ const cars = [
 
 // console.log(result)
 
-const result2 = cars.map(({price}) => price).filter(price => price > 30000).sort((a, b) => a - b)
+//   const result2 = cars.map(({price}) => price).filter(price => price > 30000).sort((a, b) => a - b)
 
-console.log(result2)
+//   console.log(result2)
