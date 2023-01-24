@@ -1,175 +1,125 @@
-// const customer = {
-//   firstName: "Jacob",
-//   lastName: "Mercer",
-//   getFullName() {
-//     console.log(this);
-//     return `${this.firstName} ${this.lastName}`;
-//   },
-// };
+// const elem1 = document.querySelector('.text')
+// console.log(elem1)
 
-// console.log(customer.getFullName());
+// const elem2 = document.querySelectorAll('li')
+// console.log(elem2)
 
-// const customer1 = {
-//   firstName: "Jacob",
-//   lastName: "Mercer",
-//   getFullName: () => {
-//     console.log(this);
-//     return `${this.firstName} ${this.lastName}`;
-//   },
-// };
+// const elem3 = document.querySelector('.item1')
+// // console.log(elem3)
 
-// console.log(customer1.getFullName());
+// const elem4 = elem3.querySelector('p')
+// console.log(elem4)
 
-// const hotel = {
-//     username: "Resort hotel",
-//     showThis() {
-//       const foo = () => {
-//         // Стрілки запам'ятовують контекст під час оголошення
-//         // з батьківської області видимості
-//         console.log("this in foo: ", this);
-//       };
-  
-//       foo();
-//     //   console.log("this in showThis: ", this);
-//     },
-//   };
-  
-//   hotel.showThis();
-//   // this in foo: {username: 'Resort hotel', showThis: ƒ}
-//   // this in showThis: {username: 'Resort hotel',showThis: ƒ}
+// console.log(elem3.firstElementChild)
 
+// elem4.textContent = 'Super text'
 
+// console.log(elem4.textContent)
 
+// console.log(elem3.classList.contains('item1'))
+// console.log(elem3.classList.contains('superitem'))
 
-// const inventory = {
-//   items: ['Knife', 'Gas mask'],
-//   add(itemName) {
-//     console.log(`Adding ${itemName} to inventory`);
+// elem3.classList.add('superitem')
+// console.log(elem3.classList.contains('superitem'))
+// elem3.classList.remove('item1')
+// elem3.classList.toggle('superitem')
 
-//     this.items.push(itemName);
-//   },
-//   remove(itemName) {
-//     console.log(`Removing ${itemName} from inventory`);
+// elem2.forEach(elem => elem.classList.add('item'))
+// elem4.style.color = 'red'
 
-//     this.items = this.items.filter(item => item !== itemName);
-//   },
-// };
+// const img = document.querySelector('img')
+// // img.setAttribute('alt', 'image')
+// img.alt = 'image'
+// console.log(img.getAttribute('src'))
+// console.log(img.attributes)
+// img.removeAttribute('src')
 
-// const invokeInventoryAction = function(itemName, action) {
-//   console.log(`Invoking action on ${itemName}`);
-//   action(itemName);
-// };
+// const btn = document.querySelector('[data-action="save"]')
+// console.log(btn.dataset.save)
 
-// invokeInventoryAction('Medkit', inventory.add);
-// // Invoking action on Medkit
-// // Adding Medkit to inventory
+// const title = document.createElement('h1');
+// const text = document.createElement('p');
 
-// // console.log(inventory.items); // ['Knife', 'Gas mask', 'Medkit']
+// console.log(title)
+// title.textContent = 'Hello'
+// title.style.backgroundColor = 'yellow'
 
-// invokeInventoryAction('Gas mask', inventory.remove);
-// // Invoking action on Gas mask
-// // Removing Gas mask from inventory
+// text.textContent = 'Test'
 
-// // console.log(inventory.items); // ['Knife', 'Medkit']
+// const body = document.body
+// console.log(body)
+// body.prepend(title, text)
 
-// // BIND
+// text.remove()
 
-// const inventory = {
-//   items: ['Knife', 'Gas mask'],
-//   add(itemName) {
-//     console.log(`Adding ${itemName} to inventory`);
+// const span = document.createElement('span')
+// span.textContent = '!!!'
+// title.append(span)
 
-//     this.items.push(itemName);
-//   },
-//   remove(itemName) {
-//     console.log(`Removing ${itemName} from inventory`);
+// console.log(title.innerHTML)
 
-//     this.items = this.items.filter(item => item !== itemName);
-//   },
-// };
-
-// const invokeInventoryAction = function (itemName, action) {
-//   console.log(`Invoking action on ${itemName}`);
-//   action(itemName);
-// };
-
-// invokeInventoryAction('Medkit', inventory.add.bind(inventory));
+// title.innerHTML = 'Hello!!!'
 
 
-// // Invoking action on Medkit
-// // Adding Medkit to inventory
+// const div = document.querySelector('.div')
 
-// // console.log(inventory.items); // ['Knife', 'Gas mask', 'Medkit']
+// div.innerHTML = '<p>1</p><p>2</p>'
+// div.innerHTML = ''
 
-// invokeInventoryAction('Gas mask', inventory.remove.bind(inventory));
-// // // Invoking action on Gas mask
-// // // Removing Gas mask from inventory
-
-// // // console.log(inventory.items); // ['Knife', 'Medkit']
+// const par = document.createElement('p')
+// par.textContent = 'qwerty'
+// div.append(par)
 
 
-// // CALL
-// const inventory = {
-//   items: ['Knife', 'Gas mask'],
-//   add(itemName) {
-//     console.log(`Adding ${itemName} to inventory`);
+// const par1 = '<p>qwerty</p>'
+//  div.innerHTML = par1
+// div.insertAdjacentHTML('beforebegin', par1)
 
-//     this.items.push(itemName);
-//   },
-//   remove(itemName) {
-//     console.log(`Removing ${itemName} from inventory`);
+// const box = document.createElement('div')
 
-//     this.items = this.items.filter(item => item !== itemName);
-//   },
-// };
+// box.insertAdjacentHTML('beforeend', '<p>1</p>')
 
-// const invokeInventoryAction = function (itemName, action) {
-//   console.log(this)
-//   console.log(`Invoking action on ${itemName}`);
-//   action.call(this, itemName);
-// };
+// document.body.append(box)
 
-// invokeInventoryAction.call(inventory, 'Medkit', inventory.add);
-// // Invoking action on Medkit
-// // Adding Medkit to inventory
+// const array = [{a: 1}, {a: 2}, {a: 3}]
 
-// // console.log(inventory.items); // ['Knife', 'Gas mask', 'Medkit']
+// const markup = array.map(({a}) => `<li>${a}</li>`).join('')
 
-// invokeInventoryAction.call(inventory, 'Gas mask', inventory.remove);
-// // Invoking action on Gas mask
-// // Removing Gas mask from inventory
+// console.log(markup)
 
-// // console.log(inventory.items); // ['Knife', 'Medkit']
+// const list = document.querySelector('.list')
 
-// APPLY
-const inventory = {
-  items: ['Knife', 'Gas mask'],
-  add(itemName) {
-    console.log(`Adding ${itemName} to inventory`);
+// list.insertAdjacentHTML('afterbegin', markup)
 
-    this.items.push(itemName);
-  },
-  remove(itemName) {
-    console.log(`Removing ${itemName} from inventory`);
 
-    this.items = this.items.filter(item => item !== itemName);
-  },
-};
+// FORBIDDEN !!!!!
 
-const invokeInventoryAction = function (itemName, action) {
-  console.log(this)
-  console.log(`Invoking action on ${itemName}`);
-  action.apply(this, [itemName]);
-};
+// const list = document.querySelector('.list')
 
-invokeInventoryAction.apply(inventory, ['Medkit', inventory.add]);
-// Invoking action on Medkit
-// Adding Medkit to inventory
+// array.forEach(({a}) => list.insertAdjacentHTML('beforeend', `<li>${a}</li>`))
 
-// console.log(inventory.items); // ['Knife', 'Gas mask', 'Medkit']
 
-invokeInventoryAction.apply(inventory, ['Gas mask', inventory.remove]);
-// Invoking action on Gas mask
-// Removing Gas mask from inventory
 
-// console.log(inventory.items); // ['Knife', 'Medkit']
+
+
+// const elements = array.map(({a}) => {
+//     const li = document.createElement('li')
+//     li.textContent = a
+//     return li
+// })
+
+// console.log(elements)
+
+// list.append(...elements)
+
+
+
+// FORBIDDEN !!!!!
+
+// const elements = array.forEach(({a}) => {
+//     const li = document.createElement('li')
+//     li.textContent = a
+//     // list.appendChild(li)
+//     list.append(li)
+// })
+
