@@ -1,86 +1,41 @@
-// const btn = document.querySelector('button')
+const list = document.querySelector("ul");
+const modalText = document.querySelector(".modal-text");
+const button = document.querySelector("button");
+const backdrop = document.querySelector(".backdrop");
 
-// const clickHandler = () => {
-//     console.log('CLICK!!!!')
-// }
+list.addEventListener("click", openModal);
 
-// btn.addEventListener('click', clickHandler)
+function openModal({ target }) {
+  let content;
+  if (target.nodeName === "P") {
+    content = target.textContent;
+  } else if (target.nodeName === "LI") {
+    content = target.firstElementChild.textContent;
+  } else {
+    return;
+  }
 
-// const items = document.querySelectorAll('.item')
+  modalText.textContent = content;
+  backdrop.classList.add("open");
 
-// const onClick = (event) => {
-// if(event.target.textContent === 'xrtxcx') {
-//     console.log('HERE')
-// }
-// }
-
-// items.forEach(item => item.addEventListener('click', onClick))
-
-const link = document.querySelector('a')
-
-
-
-
-link.addEventListener('click', onLink)
-
-
-
-function onLink(e) {
-    e.preventDefault()
-    console.log(this) 
+  window.addEventListener("keydown", closeByEsc);
 }
 
-// document.addEventListener("keydown", event => {
-//     console.log(event)
-//     console.log("key: ", event.key);
-//     console.log("code: ", event.code);
-//     if(event.code === 'Enter') {
-//         console.log('enter')
-//     }
-//   });
+button.addEventListener("click", closeModal);
+backdrop.addEventListener("click", (event) => {
+  if (event.target === event.currentTarget) {
+    closeModal();
+  }
+});
 
-// const form = document.querySelector(".form");
+function closeModal() {
+  modalText.textContent = "";
+  backdrop.classList.remove("open");
+  window.removeEventListener("keydown", closeByEsc);
+}
 
-// form.addEventListener("submit", handleSubmit);
-
-// function handleSubmit(event) {
-//   event.preventDefault();
-
-//   const {
-//     elements: { login, password }
-//   } = event.target;
-
-
-//   if (login.value === "" || password.value === "") {
-//       console.log("Please fill in all the fields!");
-//       return
-//   }
-
-//   console.log(`Login: ${login.value}, Password: ${password.value}`);
-//   event.target.reset();
-// }
-
-// const input = document.querySelector('input')
-
-// input.addEventListener('input', (e) => {
-//     console.log(e.target.value)
-// })
-// const mango = {
-//     username: "Mango",
-//     showUsername() {
-//       console.log(this);
-//       console.log(`My username is: ${this.username}`);
-//     },
-//   };
-  
-//   const btn = document.querySelector(".btn");
-  
-// //   ✅ Працює
-// //   mango.showUsername();
-  
-//   // ❌ this буде посилатися на button, якщо використовувати showUsername як callback
-// //   btn.addEventListener("click", mango.showUsername); // не працює
-  
-//   // ✅ Не забувайте прив'язувати контекст методів об'єкта
-//   btn.addEventListener("click", mango.showUsername.bind(mango));
-
+function closeByEsc({ code }) {
+  if (code === "Escape") {
+    closeModal();
+  }
+}
