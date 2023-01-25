@@ -1,41 +1,67 @@
-const list = document.querySelector("ul");
-const modalText = document.querySelector(".modal-text");
-const button = document.querySelector("button");
-const backdrop = document.querySelector(".backdrop");
+const books = [
+  {
+    id: "1",
+    title: `Apple. Эволюция компьютера`,
+    author: `Владимир Невзоров`,
+    img: `https://bukva.ua/img/products/449/449532_200.jpg`,
+    plot: `Богато иллюстрированный хронологический справочник по истории компьютеров, в котором увлекательно 
+      и в структурированном виде изложена информация о создании и развитии техники Apple на фоне истории 
+      персональных компьютеров в целом.
+      В книге даны описания десятков наиболее значимых моделей устройств как Apple, так и других производителей, 
+      сопровождающиеся большим количеством оригинальных студийных фотографий.
+      Книга предназначена для широкого круга читателей, интересующихся историей электроники. 
+      Она также может послужить источником вдохновения для дизайнеров, маркетологов и предпринимателей.`,
+  },
+  {
+    id: "2",
+    title: `Как объяснить ребенку информатику`,
+    author: `Кэрол Вордерман`,
+    img: `https://bukva.ua/img/products/480/480030_200.jpg`,
+    plot: `Иллюстрированная энциклопедия в формате инфографики о технических, социальных и культурных аспектах 
+      в информатике. Пошагово объясняет, как детям максимально эффективно использовать компьютеры и интернет-сервисы, 
+      оставаясь в безопасности. 
+      Книга рассказывает обо всем: от хранения данных до жизни в интернет-пространстве, 
+      от программирования до компьютерных атак. О том, как компьютеры функционируют, о современном программном 
+      обеспечении, устройстве Интернета и цифровом этикете. Все концепты - от хакера до биткоина - 
+      объясняются наглядно с помощью иллюстраций и схем.`,
+  },
+  {
+    id: "3",
+    title: `Путь скрам-мастера. #ScrumMasterWay`,
+    author: `Зузана Шохова`,
+    img: `https://bukva.ua/img/products/480/480090_200.jpg`,
+    plot: `Эта книга поможет вам стать выдающимся скрам-мастером и добиться отличных результатов с вашей командой. 
+      Она иллюстрированная и легкая для восприятия - вы сможете прочитать ее за выходные, а пользоваться полученными 
+      знаниями будете в течение всей карьеры.
+      Основываясь на 15-летнем опыте, Зузана Шохова рассказывает, какие роли и обязанности есть у скрам-мастера, 
+      как ему решать повседневные задачи, какие компетенции нужны, чтобы стать выдающимся скрам-мастером, 
+      какими инструментами ему нужно пользоваться.`,
+  },
+];
 
-list.addEventListener("click", openModal);
+const rootDiv = document.getElementById("root");
 
-function openModal({ target }) {
-  let content;
-  if (target.nodeName === "P") {
-    content = target.textContent;
-  } else if (target.nodeName === "LI") {
-    content = target.firstElementChild.textContent;
-  } else {
-    return;
-  }
+const leftDiv = document.createElement("div");
+const rightDiv = document.createElement("div");
 
-  modalText.textContent = content;
-  backdrop.classList.add("open");
+leftDiv.classList.add("left");
+rightDiv.classList.add("right");
 
-  window.addEventListener("keydown", closeByEsc);
+rootDiv.append(leftDiv, rightDiv);
+
+const title = document.createElement("h1");
+title.textContent = "LIBRARY";
+const list = document.createElement("ul");
+const addBtn = document.createElement("button");
+addBtn.textContent = "Add book";
+
+leftDiv.append(title, list, addBtn);
+
+function renderList() {
+  const markup = books.map(
+    ({ title }) =>
+      `<li><p>${title}</p><button class='edit'>Edit</button><button class='delete'>Delete</button></li>`
+  ).join('')
+  list.insertAdjacentHTML('afterbegin', markup)
 }
-
-button.addEventListener("click", closeModal);
-backdrop.addEventListener("click", (event) => {
-  if (event.target === event.currentTarget) {
-    closeModal();
-  }
-});
-
-function closeModal() {
-  modalText.textContent = "";
-  backdrop.classList.remove("open");
-  window.removeEventListener("keydown", closeByEsc);
-}
-
-function closeByEsc({ code }) {
-  if (code === "Escape") {
-    closeModal();
-  }
-}
+ renderList()
