@@ -1,41 +1,13 @@
-const list = document.querySelector("ul");
-const modalText = document.querySelector(".modal-text");
-const button = document.querySelector("button");
-const backdrop = document.querySelector(".backdrop");
+// console.log(_)
 
-list.addEventListener("click", openModal);
+// const input = document.querySelector('.lodash')
 
-function openModal({ target }) {
-  let content;
-  if (target.nodeName === "P") {
-    content = target.textContent;
-  } else if (target.nodeName === "LI") {
-    content = target.firstElementChild.textContent;
-  } else {
-    return;
-  }
+// input.addEventListener('input', _.throttle(inputHandler, 500))
 
-  modalText.textContent = content;
-  backdrop.classList.add("open");
 
-  window.addEventListener("keydown", closeByEsc);
-}
+// input.addEventListener('input', _.debounce(inputHandler, 500, {leading: false, trailing: true}))
 
-button.addEventListener("click", closeModal);
-backdrop.addEventListener("click", (event) => {
-  if (event.target === event.currentTarget) {
-    closeModal();
-  }
-});
+// function inputHandler(event) {
+//   console.log('value', event.target.value)
+// }
 
-function closeModal() {
-  modalText.textContent = "";
-  backdrop.classList.remove("open");
-  window.removeEventListener("keydown", closeByEsc);
-}
-
-function closeByEsc({ code }) {
-  if (code === "Escape") {
-    closeModal();
-  }
-}
