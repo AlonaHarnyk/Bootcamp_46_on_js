@@ -1,14 +1,19 @@
 #root {
-    display: flex;
-    height: 100vh;
+  display: flex;
+  height: 100vh;
 }
 
 .left {
-    background-color: antiquewhite;
-    width: 40%;
+  background-color: antiquewhite;
+  width: 40%;
 }
 
 .right {
-    background-color:aquamarine;
-    width: 60%;
+  background-color: aquamarine;
+  width: 60%;
+}
+
+.title:hover {
+  background-color: aqua;
+  cursor: pointer;
 }

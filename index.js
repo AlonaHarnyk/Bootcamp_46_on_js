@@ -1,4 +1,4 @@
-const books = [
+let books = [
   {
     id: "1",
     title: `Apple. Эволюция компьютера`,
@@ -57,11 +57,62 @@ addBtn.textContent = "Add book";
 
 leftDiv.append(title, list, addBtn);
 
+addBtn.addEventListener("click", addBook);
+
 function renderList() {
-  const markup = books.map(
-    ({ title }) =>
-      `<li><p>${title}</p><button class='edit'>Edit</button><button class='delete'>Delete</button></li>`
-  ).join('')
-  list.insertAdjacentHTML('afterbegin', markup)
+  const markup = books
+    .map(
+      ({ title, id }) =>
+        `<li id='${id}'><p class='title'>${title}</p><button class='edit'>Edit</button><button class='delete'>Delete</button></li>`
+    )
+    .join("");
+  list.innerHTML = "";
+  list.insertAdjacentHTML("afterbegin", markup);
+  const titles = document.querySelectorAll(".title");
+  titles.forEach((title) => title.addEventListener("click", renderPreview));
+  const deleteBtns = document.querySelectorAll(".delete");
+  deleteBtns.forEach((btn) => btn.addEventListener("click", deleteBook));
 }
- renderList()
+renderList();
+
+function renderPreview({ target }) {
+  console.log(target.textContent);
+  const book = books.find(({ title }) => title === target.textContent);
+  const markup = createPreviewMarkup(book);
+  // rightDiv.innerHTML = ''
+  // rightDiv.insertAdjacentHTML('beforeend', markup)
+  rightDiv.innerHTML = markup;
+}
+
+function createPreviewMarkup({ title, author, img, plot }) {
+  return `<div><h2>${title}</h2><p>${author}</p><img src='${img}' alt='title'><p>${plot}</p></div>`;
+}
+
+function deleteBook({ target }) {
+  const bookId = target.closest("li").id;
+  const filteredBooks = books.filter(({ id }) => id !== bookId);
+  books = filteredBooks;
+  renderList();
+}
+
+function addBook() {
+  const newBook = {
+    id: `${Date.now()}`,
+    title: "",
+    author: "",
+    img: "",
+    plot: "",
+  };
+  const markup = createFormMarkup();
+  rightDiv.innerHTML = markup;
+}
+
+function createFormMarkup() {
+  return `<form>
+  <label>Title: <input type='text'></label>
+  <label>Author: <input type='text'></label>
+  <label>Image: <input type='url'></label>
+  <label>Plot: <input type='text'></label>
+  <button>Save</button>
+  </form>`;
+}
