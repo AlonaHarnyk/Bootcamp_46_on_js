@@ -1,0 +1,25 @@
+{
+  "name": "bootcamp_46_on_js",
+  "version": "1.0.0",
+  "description": "study project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlonaHarnyk/Bootcamp_46_on_js.git"
+  },
+  "author": "Alona",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlonaHarnyk/Bootcamp_46_on_js/issues"
+  },
+  "homepage": "https://github.com/AlonaHarnyk/Bootcamp_46_on_js#readme",
+  "dependencies": {
+    "lodash.throttle": "^4.1.1",
+    "nodemon": "^2.0.20",
+    "uuid-random": "^1.0.2"
+  }
+}
