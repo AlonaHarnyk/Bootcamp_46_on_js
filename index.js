@@ -39,6 +39,10 @@ let books = [
   },
 ];
 
+if (!localStorage.getItem("books")) {
+  localStorage.setItem("books", JSON.stringify(books));
+}
+
 const rootDiv = document.getElementById("root");
 
 const leftDiv = document.createElement("div");
@@ -60,6 +64,7 @@ leftDiv.append(title, list, addBtn);
 addBtn.addEventListener("click", addBook);
 
 function renderList() {
+  const books = JSON.parse(localStorage.getItem("books"));
   const markup = books
     .map(
       ({ title, id }) =>
@@ -72,11 +77,13 @@ function renderList() {
   titles.forEach((title) => title.addEventListener("click", renderPreview));
   const deleteBtns = document.querySelectorAll(".delete");
   deleteBtns.forEach((btn) => btn.addEventListener("click", deleteBook));
+  const editBtns = document.querySelectorAll(".edit");
+  editBtns.forEach((btn) => btn.addEventListener("click", editBook));
 }
 renderList();
 
 function renderPreview({ target }) {
-  console.log(target.textContent);
+  const books = JSON.parse(localStorage.getItem("books"));
   const book = books.find(({ title }) => title === target.textContent);
   const markup = createPreviewMarkup(book);
   // rightDiv.innerHTML = ''
@@ -89,9 +96,10 @@ function createPreviewMarkup({ title, author, img, plot }) {
 }
 
 function deleteBook({ target }) {
+  const books = JSON.parse(localStorage.getItem("books"));
   const bookId = target.closest("li").id;
   const filteredBooks = books.filter(({ id }) => id !== bookId);
-  books = filteredBooks;
+  localStorage.setItem("books", JSON.stringify(filteredBooks));
   renderList();
 }
 
@@ -103,16 +111,62 @@ function addBook() {
     img: "",
     plot: "",
   };
-  const markup = createFormMarkup();
+  const markup = createFormMarkup(newBook);
   rightDiv.innerHTML = markup;
+  createBook(newBook);
+  const form = document.querySelector("form");
+  form.addEventListener("submit", submitHandler);
+  function submitHandler(event) {
+    event.preventDefault();
+    const values = Object.values(newBook);
+    if (values.some((value) => value === "")) {
+      alert("Fill all inputs!");
+      return;
+    }
+    const books = JSON.parse(localStorage.getItem("books"));
+    books.push(newBook);
+    localStorage.setItem("books", JSON.stringify(books));
+    renderList();
+    const markup = createPreviewMarkup(newBook);
+    rightDiv.innerHTML = markup;
+  }
 }
 
-function createFormMarkup() {
+function createFormMarkup({ title, author, img, plot }) {
   return `<form>
-  <label>Title: <input type='text'></label>
-  <label>Author: <input type='text'></label>
-  <label>Image: <input type='url'></label>
-  <label>Plot: <input type='text'></label>
+  <label>Title: <input type='text' name='title' value='${title}'></label>
+  <label>Author: <input type='text' name='author' value='${author}'></label>
+  <label>Image: <input type='url' name='img' value='${img}'></label>
+  <label>Plot: <input type='text' name='plot' value='${plot}'></label>
   <button>Save</button>
   </form>`;
+}
+
+function createBook(book) {
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => input.addEventListener("change", changeHandler));
+  function changeHandler({ target: { name, value } }) {
+    book[name] = value;
+  }
+}
+
+function editBook({ target }) {
+  const books = JSON.parse(localStorage.getItem("books"));
+  const bookId = target.closest("li").id;
+  const book = books.find(({ id }) => id === bookId);
+  const markup = createFormMarkup(book);
+  rightDiv.innerHTML = markup;
+  createBook(book);
+  const form = document.querySelector("form");
+  form.addEventListener("submit", submitHandler);
+  function submitHandler(event) {
+    event.preventDefault();
+    const books = JSON.parse(localStorage.getItem("books"));
+    const index = books.findIndex(({ id }) => id === bookId);
+    books[index] = book;
+    localStorage.setItem("books", JSON.stringify(books));
+    renderList();
+    const markup = createPreviewMarkup(book);
+    rightDiv.innerHTML = markup;
+  }
 }
