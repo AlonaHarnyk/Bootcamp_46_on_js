@@ -17,8 +17,8 @@
 
 // export const obj = {q: 90, p: 70, x: 6869}
 
-import data from './script.js'
+// import data from './script.js'
 
-import {a} from './script.js'
+// import {a} from './script.js'
 
-console.log(data)
+// console.log(data)

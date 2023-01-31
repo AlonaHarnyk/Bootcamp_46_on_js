@@ -1,34 +1,47 @@
-// import {a, array} from './index.js'
+const obj = {a: 2, b: 6, c: 9, g: {h: 9}}
+
+// console.log(obj)
+
+const arr = [1, 3, 6, [3, 6], {d: 90}]
+
+// const str = JSON.stringify(arr)
+
+// console.log(str)
+
+// const data = JSON.parse(str)
+
+// console.log(data)
+
+// const b = 10
+// console.log(10)
 
 
-// const foo = (f, b) => f + b
+// try {
+//     console.log(a)
+//   } catch (error) {
+//     console.log(error)
+//   }
 
-// console.log(a(5, 70, foo))
+
+
+
+//   const a = 809;
+
+//   console.log(587097)
+
+// localStorage.setItem('token', 'eiarugiurwtyhihuetuh9e5ur9y85bferkjhgiueqrhgihrwiothgithitrhwgoiwju5oi6u8947596t87597hgvjhbru3667')
+// localStorage.setItem('lang', 'en')
+// localStorage.setItem('data', JSON.stringify(arr))
+
+// const array = JSON.parse(localStorage.getItem('data'))
+
 // console.log(array)
 
+// localStorage.removeItem('lang')
 
-// import {obj, c, b} from './index.js'
+// localStorage.clear()
 
-// const {p, y} = obj
+// localStorage.setItem('key', 'viyjguygiuygiugik')
 
-// b()
+// console.log(JSON.parse(localStorage.getItem('key')))
 
-// const a = 809
-
-// console.log(a)
-
-// import * as data from "./index.js";
-
-// const {b} = data
-
-// console.log(b)
-
-
-const b = 40
-const c = () => a + b
-
-export const a = 10
-
-export default {
-    b, c
-}
