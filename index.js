@@ -1,172 +1,187 @@
-let books = [
-  {
-    id: "1",
-    title: `Apple. Эволюция компьютера`,
-    author: `Владимир Невзоров`,
-    img: `https://bukva.ua/img/products/449/449532_200.jpg`,
-    plot: `Богато иллюстрированный хронологический справочник по истории компьютеров, в котором увлекательно 
-      и в структурированном виде изложена информация о создании и развитии техники Apple на фоне истории 
-      персональных компьютеров в целом.
-      В книге даны описания десятков наиболее значимых моделей устройств как Apple, так и других производителей, 
-      сопровождающиеся большим количеством оригинальных студийных фотографий.
-      Книга предназначена для широкого круга читателей, интересующихся историей электроники. 
-      Она также может послужить источником вдохновения для дизайнеров, маркетологов и предпринимателей.`,
-  },
-  {
-    id: "2",
-    title: `Как объяснить ребенку информатику`,
-    author: `Кэрол Вордерман`,
-    img: `https://bukva.ua/img/products/480/480030_200.jpg`,
-    plot: `Иллюстрированная энциклопедия в формате инфографики о технических, социальных и культурных аспектах 
-      в информатике. Пошагово объясняет, как детям максимально эффективно использовать компьютеры и интернет-сервисы, 
-      оставаясь в безопасности. 
-      Книга рассказывает обо всем: от хранения данных до жизни в интернет-пространстве, 
-      от программирования до компьютерных атак. О том, как компьютеры функционируют, о современном программном 
-      обеспечении, устройстве Интернета и цифровом этикете. Все концепты - от хакера до биткоина - 
-      объясняются наглядно с помощью иллюстраций и схем.`,
-  },
-  {
-    id: "3",
-    title: `Путь скрам-мастера. #ScrumMasterWay`,
-    author: `Зузана Шохова`,
-    img: `https://bukva.ua/img/products/480/480090_200.jpg`,
-    plot: `Эта книга поможет вам стать выдающимся скрам-мастером и добиться отличных результатов с вашей командой. 
-      Она иллюстрированная и легкая для восприятия - вы сможете прочитать ее за выходные, а пользоваться полученными 
-      знаниями будете в течение всей карьеры.
-      Основываясь на 15-летнем опыте, Зузана Шохова рассказывает, какие роли и обязанности есть у скрам-мастера, 
-      как ему решать повседневные задачи, какие компетенции нужны, чтобы стать выдающимся скрам-мастером, 
-      какими инструментами ему нужно пользоваться.`,
-  },
-];
+// const greet1 = (a, b) => {
+//   console.log(a + b);
+// };
 
-if (!localStorage.getItem("books")) {
-  localStorage.setItem("books", JSON.stringify(books));
-}
+// const greet2 = (a, b) => {
+//   console.log(a - b);
+// };
 
-const rootDiv = document.getElementById("root");
+// console.log(111)
 
-const leftDiv = document.createElement("div");
-const rightDiv = document.createElement("div");
+// const timerId = setTimeout(greet1, 0, 5, 10);
 
-leftDiv.classList.add("left");
-rightDiv.classList.add("right");
+// console.log(timerId)
 
-rootDiv.append(leftDiv, rightDiv);
+// const timerId1 = setTimeout(greet2, 2500, 100, 50);
 
-const title = document.createElement("h1");
-title.textContent = "LIBRARY";
-const list = document.createElement("ul");
-const addBtn = document.createElement("button");
-addBtn.textContent = "Add book";
+// console.log(timerId1)
 
-leftDiv.append(title, list, addBtn);
+// console.log(222)
 
-addBtn.addEventListener("click", addBook);
+// // clearTimeout(timerId);
 
-function renderList() {
-  const books = JSON.parse(localStorage.getItem("books"));
-  const markup = books
-    .map(
-      ({ title, id }) =>
-        `<li id='${id}'><p class='title'>${title}</p><button class='edit'>Edit</button><button class='delete'>Delete</button></li>`
-    )
-    .join("");
-  list.innerHTML = "";
-  list.insertAdjacentHTML("afterbegin", markup);
-  const titles = document.querySelectorAll(".title");
-  titles.forEach((title) => title.addEventListener("click", renderPreview));
-  const deleteBtns = document.querySelectorAll(".delete");
-  deleteBtns.forEach((btn) => btn.addEventListener("click", deleteBook));
-  const editBtns = document.querySelectorAll(".edit");
-  editBtns.forEach((btn) => btn.addEventListener("click", editBook));
-}
-renderList();
+// const startBtn = document.querySelector(".js-start");
+// const stopBtn = document.querySelector(".js-stop");
+// let a = null;
 
-function renderPreview({ target }) {
-  const books = JSON.parse(localStorage.getItem("books"));
-  const book = books.find(({ title }) => title === target.textContent);
-  const markup = createPreviewMarkup(book);
-  // rightDiv.innerHTML = ''
-  // rightDiv.insertAdjacentHTML('beforeend', markup)
-  rightDiv.innerHTML = markup;
-}
+// // console.log(timerId)
 
-function createPreviewMarkup({ title, author, img, plot }) {
-  return `<div><h2>${title}</h2><p>${author}</p><img src='${img}' alt='title'><p>${plot}</p></div>`;
-}
+// startBtn.addEventListener("click", () => {
+//  a = setInterval(() => {
+//     console.log(`I love async JS!  ${Math.random()}`);
+//   }, 1000);
 
-function deleteBook({ target }) {
-  const books = JSON.parse(localStorage.getItem("books"));
-  const bookId = target.closest("li").id;
-  const filteredBooks = books.filter(({ id }) => id !== bookId);
-  localStorage.setItem("books", JSON.stringify(filteredBooks));
-  renderList();
-}
+// });
 
-function addBook() {
-  const newBook = {
-    id: `${Date.now()}`,
-    title: "",
-    author: "",
-    img: "",
-    plot: "",
-  };
-  const markup = createFormMarkup(newBook);
-  rightDiv.innerHTML = markup;
-  createBook(newBook);
-  const form = document.querySelector("form");
-  form.addEventListener("submit", submitHandler);
-  function submitHandler(event) {
-    event.preventDefault();
-    const values = Object.values(newBook);
-    if (values.some((value) => value === "")) {
-      alert("Fill all inputs!");
-      return;
-    }
-    const books = JSON.parse(localStorage.getItem("books"));
-    books.push(newBook);
-    localStorage.setItem("books", JSON.stringify(books));
-    renderList();
-    const markup = createPreviewMarkup(newBook);
-    rightDiv.innerHTML = markup;
+// stopBtn.addEventListener("click", () => {
+//   console.log(a)
+//   clearInterval(a);
+//   console.log(a)
+//   console.log(`Interval with id ${a} has stopped!`);
+// });
+
+// const date = new Date();
+
+// console.log(date.getTime());
+// // "Fri Jun 18 2021 15:01:35 GMT+0300 (Eastern European Summer Time)"
+
+// // console.log(date.getTime());
+
+// // // console.log(new Date(93750427970))
+
+// // const date = new Date();
+// // console.log("Date: ", date);
+
+// // Повертає день місяця від 1 до 31
+// // console.log("getDate(): ", date.getDate());
+
+// // // Повертає день тижня від 0 до 6
+// // console.log("getDay(): ", date.getDay());
+
+// // // Повертає місяць від 0 до 11
+// // console.log("getMonth(): ", date.getMonth());
+
+// // // Повертає рік з 4 цифр
+// // console.log("getFullYear(): ", date.getFullYear());
+
+// // // Повертає години
+// // console.log("getHours(): ", date.getHours());
+
+// // // Повертає хвилини
+// // console.log("getMinutes(): ", date.getMinutes());
+
+// // // Повертає секунди
+// // console.log("getSeconds(): ", date.getSeconds());
+
+// const date = new Date();
+// console.log("Date: ", date);
+
+// // Повертає день місяця від 1 до 31
+// console.log("getUTCDate(): ", date.getUTCDate());
+
+// // Повертає день тижня від 0 до 6
+// console.log("getUTCDay(): ", date.getUTCDay());
+
+// // Повертає місяць від 0 до 11
+// console.log("getUTCMonth(): ", date.getUTCMonth());
+
+// // Повертає рік з 4 цифр
+// console.log("getUTCFullYear(): ", date.getUTCFullYear());
+
+// // Повертає години
+// console.log("getUTCHours(): ", date.getUTCHours());
+
+// // Повертає хвилини
+// console.log("getUTCMinutes(): ", date.getUTCMinutes());
+
+// // Повертає секунди
+// console.log("getUTCSeconds(): ", date.getUTCSeconds());
+
+// // Повертає мілісекунди
+// console.log("getUTCMilliseconds(): ", date.getUTCMilliseconds());
+
+// Write a function which returns a day number that was some amount of days ago from the passed date.
+
+// const getPastDay = (date, days) => {
+//   const MS_PER_DAY = 1000 * 60 * 60 * 24;
+//   const msPerDays = MS_PER_DAY * days;
+//   const delta = date - msPerDays;
+//   return new Date(delta).getDate();
+// };
+
+// const date = new Date(2022, 0, 2);
+// console.log(getPastDay(date, 1)); // 1, (1 Jan 2022)
+// console.log(getPastDay(date, 2)); // 31, (31 Dec 2021)
+// console.log(getPastDay(date, 365)); // 2, (2 Jan 2021)
+
+// // Write a function that formats a date in such format "YYYY/MM/DD HH:mm".
+
+// const formatDate = (date) => {
+// const year = date.getFullYear()
+// const month = String(date.getMonth() + 1).padStart(2, '0')
+// const days = String(date.getDate()).padStart(2, '0')
+// const hours = String(date.getHours()).padStart(2, '0')
+// const minutes = String(date.getMinutes()).padStart(2, '0')
+// return `${year}/${month}/${days} ${hours}:${minutes}`
+// }
+
+// console.log(formatDate(new Date("6/15/2019 09:15:00"))); // "2019/06/15 09:15"
+// console.log(formatDate(new Date())); // gets current local time
+
+class CountdownTimer {
+  constructor({ selector, targetDate }) {
+    this.targetDate = targetDate;
+    this.daysSpan = document.querySelector(`${selector} [data-value="days"]`);
+    this.hoursSpan = document.querySelector(
+      `${selector}  [data-value="hours"]`
+    );
+    this.minsSpan = document.querySelector(`${selector}  [data-value="mins"]`);
+    this.secsSpan = document.querySelector(`${selector}  [data-value="secs"]`);
+    this.updateTimer();
+  }
+
+  updateTimer() {
+    setInterval(() => {
+      const currentTime = Date.now();
+      const delta = this.targetDate - currentTime;
+      const { days, hours, minutes, seconds } = this.convertTime(delta);
+      this.daysSpan.textContent = days;
+      this.hoursSpan.textContent = hours;
+      this.minsSpan.textContent = minutes;
+      this.secsSpan.textContent = seconds;
+    }, 1000);
+  }
+
+  convertTime(ms) {
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+
+    // Remaining days
+    const days = Math.floor(ms / day);
+    // Remaining hours
+    const hours = Math.floor((ms % day) / hour);
+    // Remaining minutes
+    const minutes = Math.floor(((ms % day) % hour) / minute);
+    // Remaining seconds
+    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+
+    return { days, hours, minutes, seconds };
   }
 }
 
-function createFormMarkup({ title, author, img, plot }) {
-  return `<form>
-  <label>Title: <input type='text' name='title' value='${title}'></label>
-  <label>Author: <input type='text' name='author' value='${author}'></label>
-  <label>Image: <input type='url' name='img' value='${img}'></label>
-  <label>Plot: <input type='text' name='plot' value='${plot}'></label>
-  <button>Save</button>
-  </form>`;
-}
+const timer1 = new CountdownTimer({
+  selector: "#timer-1",
+  targetDate: new Date("Jan 1, 2024"),
+});
 
-function createBook(book) {
-  const inputs = document.querySelectorAll("input");
-  inputs.forEach((input) => input.addEventListener("change", changeHandler));
-  function changeHandler({ target: { name, value } }) {
-    book[name] = value;
-  }
-}
+const timer2 = new CountdownTimer({
+  selector: "#timer-2",
+  targetDate: new Date("May 9, 2023"),
+});
 
-function editBook({ target }) {
-  const books = JSON.parse(localStorage.getItem("books"));
-  const bookId = target.closest("li").id;
-  const book = books.find(({ id }) => id === bookId);
-  const markup = createFormMarkup(book);
-  rightDiv.innerHTML = markup;
-  createBook(book);
-  const form = document.querySelector("form");
-  form.addEventListener("submit", submitHandler);
-  function submitHandler(event) {
-    event.preventDefault();
-    const books = JSON.parse(localStorage.getItem("books"));
-    const index = books.findIndex(({ id }) => id === bookId);
-    books[index] = book;
-    localStorage.setItem("books", JSON.stringify(books));
-    renderList();
-    const markup = createPreviewMarkup(book);
-    rightDiv.innerHTML = markup;
-  }
-}
+const timer3 = new CountdownTimer({
+  selector: "#timer-3",
+  targetDate: new Date("Nov 1, 2023"),
+});
