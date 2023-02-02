@@ -1,187 +1,246 @@
-// const greet1 = (a, b) => {
-//   console.log(a + b);
+// // const foo = (a, b) => {
+// //   const res = a > b
+// //   if(res) {
+// //     console.log('true')
+// //   } else {
+// //     console.log('false')
+// //   }
+// // }
+
+// // foo(10, 5)
+
+// // // Напиши функцію delay(ms), яка повертає проміс, що переходить в стан "resolved" через ms мілісекунд.
+// // //  Значенням промісу, яке виповнилося має бути та кількість мілісекунд, яку передали під час виклику функції delay.
+
+// // const delay = ms => {
+// //   // Твій код
+// //   return new Promise((resolve) => {
+// //   setTimeout(() => {
+// //     resolve(ms)
+// //   }, ms)
+// //   })
+// // };
+
+// // const logger = time => console.log(`Resolved after ${time}ms`);
+
+// // // Виклич функції для перевірки
+// // delay(2000).then(a => logger(a)); // Resolved after 2000ms
+// // delay(1000).then(b => logger(b)); // Resolved after 1000ms
+// // delay(1500).then(logger); // Resolved after 1500ms
+
+// // const isSuccess = true;
+
+// // const promise = new Promise((resolve, reject) => {
+// //   setTimeout(() => {
+// //     if (isSuccess) {
+// //       resolve("Success! Value passed to reve functsolion");
+// //     } else {
+// //       reject("Error! Error passed to reject function");
+// //     }
+// //   }, 2000);
+// // });
+
+// // promise
+// //   .then((value) => {
+// //     console.log(value);
+// //   })
+// //   .catch((error) => {
+// //     console.log(error);
+// //   })
+// //   .finally(() => console.log(123));
+
+// // Перепиши функцію toggleUserState() так, щоб вона не використовувала callback-функцію callback, а приймала
+// // всього два параметри allUsers і userName і повертала проміс.
+
+// // const users = [
+// //   { name: 'Mango', active: true },
+// //   { name: 'Poly', active: false },
+// //   { name: 'Ajax', active: true },
+// //   { name: 'Lux', active: false },
+// // ];
+
+// // const toggleUserState = (allUsers, userName, callback) => {
+// //   const updatedUsers = allUsers.map(user =>
+// //     user.name === userName ? { ...user, active: !user.active } : user,
+// //   );
+
+// //   callback(updatedUsers);
+// // };
+
+// // const logger = updatedUsers => console.table(updatedUsers);
+
+// /*
+//  * Зараз працює так
+//  */
+// // toggleUserState(users, 'Mango', logger);
+// // toggleUserState(users, 'Lux', logger);
+
+// const users = [
+//   { name: "Mango", active: true },
+//   { name: "Poly", active: false },
+//   { name: "Ajax", active: true },
+//   { name: "Lux", active: false },
+// ];
+
+// const toggleUserState = (allUsers, userName) => {
+//   const updatedUsers = allUsers.map((user) =>
+//     user.name === userName ? { ...user, active: !user.active } : user
+//   );
+//   // return new Promise((res) => {
+//   //   const updatedUsers = allUsers.map((user) =>
+//   //     user.name === userName ? { ...user, active: !user.active } : user
+//   //   );
+//   //   res(updatedUsers);
+//   // });
+
+//   return Promise.resolve(updatedUsers);
 // };
 
-// const greet2 = (a, b) => {
-//   console.log(a - b);
+// const logger = (updatedUsers) => console.table(updatedUsers);
+
+// /*
+//  * Повинно працювати так
+//  */
+// toggleUserState(users, "Mango").then((data) => logger(data));
+// toggleUserState(users, "Lux").then(logger);
+
+// // const promise = new Promise((resolve, reject) => {
+// //   setTimeout(() => {
+// //     resolve(5);
+// //   }, 2000);
+// // });
+
+// // promise
+// //   .then(value => {
+// //     console.log(value); // 5
+// //     // return value * 2;
+// //   const promise2 = new Promise((resolve, reject) => {
+// //       setTimeout(() => {
+// //         resolve(value * 2);
+// //       }, 2000);
+// //     })
+// //   })
+// //   .then(value => {
+// //     console.log(value); // 10
+// //     return value * 3;
+// //   })
+// //   .then(value => {
+// //     console.log(value); // 30
+// //   })
+// //   .catch(error => {
+// //     console.log(error);
+// //   })
+// //   .finally(() => {
+// //     console.log("Final task");
+// //   });
+
+// // Перепиши функцію makeTransaction() так, щоб вона не використовувала callback-функції onSuccess і onError,
+// // а приймала всього один параметр transaction і повертала проміс.
+
+// // const randomIntegerFromInterval = (min, max) => {
+// //   return Math.floor(Math.random() * (max - min + 1) + min);
+// // };
+
+// // const makeTransaction = (transaction, onSuccess, onError) => {
+// //   const delay = randomIntegerFromInterval(200, 500);
+
+// //   setTimeout(() => {
+// //     const canProcess = Math.random() > 0.3;
+
+// //     if (canProcess) {
+// //       onSuccess(transaction.id, delay);
+// //     } else {
+// //       onError(transaction.id);
+// //     }
+// //   }, delay);
+// // };
+
+// // const logSuccess = (id, time) => {
+// //   console.log(`Transaction ${id} processed in ${time}ms`);
+// // };
+
+// // const logError = id => {
+// //   console.warn(`Error processing transaction ${id}. Please try again later.`);
+// // };
+
+// /*
+//  * Працює так
+//  */
+// // makeTransaction({ id: 70, amount: 150 }, logSuccess, logError);
+// // makeTransaction({ id: 71, amount: 230 }, logSuccess, logError);
+// // makeTransaction({ id: 72, amount: 75 }, logSuccess, logError);
+// // makeTransaction({ id: 73, amount: 100 }, logSuccess, logError);
+
+// const randomIntegerFromInterval = (min, max) => {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
 // };
 
-// console.log(111)
+// const makeTransaction = (transaction) => {
+//   const delay = randomIntegerFromInterval(200, 500);
 
-// const timerId = setTimeout(greet1, 0, 5, 10);
-
-// console.log(timerId)
-
-// const timerId1 = setTimeout(greet2, 2500, 100, 50);
-
-// console.log(timerId1)
-
-// console.log(222)
-
-// // clearTimeout(timerId);
-
-// const startBtn = document.querySelector(".js-start");
-// const stopBtn = document.querySelector(".js-stop");
-// let a = null;
-
-// // console.log(timerId)
-
-// startBtn.addEventListener("click", () => {
-//  a = setInterval(() => {
-//     console.log(`I love async JS!  ${Math.random()}`);
-//   }, 1000);
-
-// });
-
-// stopBtn.addEventListener("click", () => {
-//   console.log(a)
-//   clearInterval(a);
-//   console.log(a)
-//   console.log(`Interval with id ${a} has stopped!`);
-// });
-
-// const date = new Date();
-
-// console.log(date.getTime());
-// // "Fri Jun 18 2021 15:01:35 GMT+0300 (Eastern European Summer Time)"
-
-// // console.log(date.getTime());
-
-// // // console.log(new Date(93750427970))
-
-// // const date = new Date();
-// // console.log("Date: ", date);
-
-// // Повертає день місяця від 1 до 31
-// // console.log("getDate(): ", date.getDate());
-
-// // // Повертає день тижня від 0 до 6
-// // console.log("getDay(): ", date.getDay());
-
-// // // Повертає місяць від 0 до 11
-// // console.log("getMonth(): ", date.getMonth());
-
-// // // Повертає рік з 4 цифр
-// // console.log("getFullYear(): ", date.getFullYear());
-
-// // // Повертає години
-// // console.log("getHours(): ", date.getHours());
-
-// // // Повертає хвилини
-// // console.log("getMinutes(): ", date.getMinutes());
-
-// // // Повертає секунди
-// // console.log("getSeconds(): ", date.getSeconds());
-
-// const date = new Date();
-// console.log("Date: ", date);
-
-// // Повертає день місяця від 1 до 31
-// console.log("getUTCDate(): ", date.getUTCDate());
-
-// // Повертає день тижня від 0 до 6
-// console.log("getUTCDay(): ", date.getUTCDay());
-
-// // Повертає місяць від 0 до 11
-// console.log("getUTCMonth(): ", date.getUTCMonth());
-
-// // Повертає рік з 4 цифр
-// console.log("getUTCFullYear(): ", date.getUTCFullYear());
-
-// // Повертає години
-// console.log("getUTCHours(): ", date.getUTCHours());
-
-// // Повертає хвилини
-// console.log("getUTCMinutes(): ", date.getUTCMinutes());
-
-// // Повертає секунди
-// console.log("getUTCSeconds(): ", date.getUTCSeconds());
-
-// // Повертає мілісекунди
-// console.log("getUTCMilliseconds(): ", date.getUTCMilliseconds());
-
-// Write a function which returns a day number that was some amount of days ago from the passed date.
-
-// const getPastDay = (date, days) => {
-//   const MS_PER_DAY = 1000 * 60 * 60 * 24;
-//   const msPerDays = MS_PER_DAY * days;
-//   const delta = date - msPerDays;
-//   return new Date(delta).getDate();
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const canProcess = Math.random() > 0.3;
+//       if (canProcess) {
+//         resolve([transaction.id, delay]);
+//       } else {
+//         reject(transaction.id);
+//       }
+//     }, delay);
+//   });
 // };
 
-// const date = new Date(2022, 0, 2);
-// console.log(getPastDay(date, 1)); // 1, (1 Jan 2022)
-// console.log(getPastDay(date, 2)); // 31, (31 Dec 2021)
-// console.log(getPastDay(date, 365)); // 2, (2 Jan 2021)
+// const logSuccess = (array) => {
+//   console.log(`Transaction ${array[0]} processed in ${array[1]}ms`);
+// };
 
-// // Write a function that formats a date in such format "YYYY/MM/DD HH:mm".
+// const logError = (id) => {
+//   console.warn(`Error processing transaction ${id}. Please try again later.`);
+// };
 
-// const formatDate = (date) => {
-// const year = date.getFullYear()
-// const month = String(date.getMonth() + 1).padStart(2, '0')
-// const days = String(date.getDate()).padStart(2, '0')
-// const hours = String(date.getHours()).padStart(2, '0')
-// const minutes = String(date.getMinutes()).padStart(2, '0')
-// return `${year}/${month}/${days} ${hours}:${minutes}`
-// }
+// /*
+//  * Повинно працювати так
+//  */
+// makeTransaction({ id: 70, amount: 150 }).then(logSuccess).catch(logError);
 
-// console.log(formatDate(new Date("6/15/2019 09:15:00"))); // "2019/06/15 09:15"
-// console.log(formatDate(new Date())); // gets current local time
+// makeTransaction({ id: 71, amount: 230 }).then(logSuccess).catch(logError);
 
-class CountdownTimer {
-  constructor({ selector, targetDate }) {
-    this.targetDate = targetDate;
-    this.daysSpan = document.querySelector(`${selector} [data-value="days"]`);
-    this.hoursSpan = document.querySelector(
-      `${selector}  [data-value="hours"]`
-    );
-    this.minsSpan = document.querySelector(`${selector}  [data-value="mins"]`);
-    this.secsSpan = document.querySelector(`${selector}  [data-value="secs"]`);
-    this.updateTimer();
-  }
+// makeTransaction({ id: 72, amount: 75 }).then(logSuccess).catch(logError);
 
-  updateTimer() {
-    setInterval(() => {
-      const currentTime = Date.now();
-      const delta = this.targetDate - currentTime;
-      const { days, hours, minutes, seconds } = this.convertTime(delta);
-      this.daysSpan.textContent = days;
-      this.hoursSpan.textContent = hours;
-      this.minsSpan.textContent = minutes;
-      this.secsSpan.textContent = seconds;
-    }, 1000);
-  }
+// makeTransaction({ id: 73, amount: 100 }).then(logSuccess).catch(logError);
 
-  convertTime(ms) {
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
 
-    // Remaining days
-    const days = Math.floor(ms / day);
-    // Remaining hours
-    const hours = Math.floor((ms % day) / hour);
-    // Remaining minutes
-    const minutes = Math.floor(((ms % day) % hour) / minute);
-    // Remaining seconds
-    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+// const makePromise1 = (text, delay) => {
+//   return new Promise(resolve => {
+//     setTimeout(() => resolve(text), delay);
+//   });
+// };
 
-    return { days, hours, minutes, seconds };
-  }
-}
+// const makePromise2 = (text, delay) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => resolve(text), delay);
+//   });
+// };
 
-const timer1 = new CountdownTimer({
-  selector: "#timer-1",
-  targetDate: new Date("Jan 1, 2024"),
-});
 
-const timer2 = new CountdownTimer({
-  selector: "#timer-2",
-  targetDate: new Date("May 9, 2023"),
-});
+// const promiseA = makePromise1("promiseA value", 1000);
+// const promiseB = makePromise1("promiseB value", 1000);
+// const promiseC = makePromise2("promiseC value", 500);
 
-const timer3 = new CountdownTimer({
-  selector: "#timer-3",
-  targetDate: new Date("Nov 1, 2023"),
-});
+
+// Promise.all([promiseA, promiseB, promiseC])
+//   .then(value => console.log(value)) //["promiseA value", "promiseB value"]
+//   .catch(error => console.log(error));
+
+const makePromise = (text, delay) => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(text), delay);
+  });
+};
+
+const promiseA = makePromise("promiseA value", 1000);
+const promiseB = makePromise("promiseB value", 3000);
+
+Promise.race([promiseA, promiseB])
+  .then(value => console.log(value)) // "promiseA value"
+  .catch(error => console.log(error));
